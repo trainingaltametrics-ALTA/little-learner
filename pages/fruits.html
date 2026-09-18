@@ -1,1 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Fruits - Little Learner</title>
+
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../css/fruits.css">
+</head>
+
+<body>
+
+  <header class="fruits-header">
+
+    <a href="../index.html" class="back-button">
+      🏠 Home
+    </a>
+
+    <div class="page-title">
+      🍎 Fruit World
+    </div>
+
+    <div class="stars">
+      ⭐ <span id="starCount">0</span>
+    </div>
+
+  </header>
+
+
+  <main class="fruits-container">
+
+    <div class="welcome-card">
+
+      <h1>🍎 Let's Learn Fruits!</h1>
+
+      <p>
+        Look, listen and learn about yummy fruits! 🌈
+      </p>
+
+    </div>
+
+
+    <div class="progress-section">
+
+      <div class="progress-text">
+        Fruit
+        <span id="currentNumber">1</span>
+        of 10
+      </div>
+
+      <div class="progress-bar">
+        <div id="progressFill"></div>
+      </div>
+
+    </div>
+
+
+    <section class="fruit-card">
+
+      <div id="fruitPicture" class="fruit-picture">
+        🍎
+      </div>
+
+      <h2 id="fruitName">
+        APPLE
+      </h2>
+
+      <div id="fruitColor" class="fruit-color">
+        Red ❤️
+      </div>
+
+      <p id="fruitSentence" class="fruit-sentence">
+        An apple can be red and crunchy.
+      </p>
+
+      <button id="listenButton" class="listen-button">
+        🔊 Listen
+      </button>
+
+    </section>
+
+
+    <div class="navigation">
+
+      <button id="previousButton">
+        ⬅️ Previous
+      </button>
+
+      <button id="nextButton">
+        Next ➡️
+      </button>
+
+    </div>
+
+
+    <div id="fruitSelector" class="fruit-selector"></div>
+
+
+    <div id="completionMessage" class="completion-message">
+
+      🎉 Amazing! You learned all the fruits!
+
+      <br>
+
+      ⭐ You earned 5 stars!
+
+    </div>
+
+
+    <a href="fruits-game.html" class="game-button">
+      🎮 Play Fruits Game
+    </a>
+
+  </main>
+
+
+  <script src="../js/fruits.js"></script>
+
+</body>
+</html>
