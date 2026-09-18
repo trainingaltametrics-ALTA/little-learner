@@ -1,1 +1,182 @@
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Little Learner 🌈</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="top-bar">
+        <div class="logo">
+            🌈 <span>Little Learner</span>
+        </div>
+
+        <div class="stars">
+            ⭐ <span id="starCount">0</span>
+        </div>
+    </header>
+
+
+    <!-- Welcome Section -->
+    <main>
+
+        <section class="welcome">
+
+            <div class="welcome-text">
+                <h1>Welcome, Little Learner! 👋</h1>
+
+                <p>
+                    Let's learn, play and have fun! 🎉
+                </p>
+
+                <button class="start-button" onclick="startLearning()">
+                    🚀 Start Learning
+                </button>
+            </div>
+
+            <div class="welcome-character">
+                🧒
+            </div>
+
+        </section>
+
+
+        <!-- Learning Areas -->
+        <section class="learning-section">
+
+            <h2>📚 What would you like to learn?</h2>
+
+            <div class="learning-grid">
+
+                <!-- ABC -->
+                <button class="learning-card abc-card"
+                        onclick="openModule('alphabet')">
+
+                    <div class="card-icon">🔤</div>
+
+                    <h3>ABC</h3>
+
+                    <p>Learn Alphabet</p>
+
+                </button>
+
+
+                <!-- Numbers -->
+                <button class="learning-card number-card"
+                        onclick="openModule('numbers')">
+
+                    <div class="card-icon">🔢</div>
+
+                    <h3>123</h3>
+
+                    <p>Learn Numbers</p>
+
+                </button>
+
+
+                <!-- Colors -->
+                <button class="learning-card color-card"
+                        onclick="openModule('colors')">
+
+                    <div class="card-icon">🎨</div>
+
+                    <h3>Colors</h3>
+
+                    <p>Learn Colors</p>
+
+                </button>
+
+
+                <!-- Shapes -->
+                <button class="learning-card shape-card"
+                        onclick="openModule('shapes')">
+
+                    <div class="card-icon">🔷</div>
+
+                    <h3>Shapes</h3>
+
+                    <p>Learn Shapes</p>
+
+                </button>
+
+
+                <!-- Animals -->
+                <button class="learning-card animal-card"
+                        onclick="openModule('animals')">
+
+                    <div class="card-icon">🐶</div>
+
+                    <h3>Animals</h3>
+
+                    <p>Meet Animals</p>
+
+                </button>
+
+
+                <!-- Fruits -->
+                <button class="learning-card fruit-card"
+                        onclick="openModule('fruits')">
+
+                    <div class="card-icon">🍎</div>
+
+                    <h3>Fruits</h3>
+
+                    <p>Learn Fruits</p>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Progress -->
+        <section class="progress-card">
+
+            <div class="progress-icon">
+                ⭐
+            </div>
+
+            <div class="progress-info">
+
+                <h2>My Progress</h2>
+
+                <p>
+                    You have collected
+                    <strong><span id="progressStars">0</span> stars</strong>!
+                </p>
+
+            </div>
+
+            <button onclick="showProgress()">
+                View Progress
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            🌈 Little Learner • Learn • Play • Grow 🌱
+        </p>
+
+    </footer>
+
+
+    <script src="app.js"></script>
+
+</body>
+</html>
+
