@@ -2,69 +2,56 @@
 // LITTLE LEARNER - SHAPES GAME
 // ========================================
 
-const shapesData = [
+const shapes = [
     {
         name: "Circle",
-        className: "shape-circle",
-        emoji: null,
-        sentence: "A ball is round like a circle."
+        type: "circle",
+        color: "#ff6b6b"
     },
     {
         name: "Square",
-        className: "shape-square",
-        emoji: null,
-        sentence: "A window can be a square."
+        type: "square",
+        color: "#4d9fff"
     },
     {
         name: "Triangle",
-        className: "shape-triangle",
-        emoji: null,
-        sentence: "A triangle has three sides."
+        type: "triangle",
+        color: "#ffd93d"
     },
     {
         name: "Rectangle",
-        className: "shape-rectangle",
-        emoji: null,
-        sentence: "A door can be a rectangle."
+        type: "rectangle",
+        color: "#4caf50"
     },
     {
         name: "Star",
-        className: "shape-star",
-        emoji: "⭐",
-        sentence: "A star shines in the sky."
+        type: "star",
+        emoji: "⭐"
     },
     {
         name: "Diamond",
-        className: "shape-diamond",
-        emoji: null,
-        sentence: "A diamond has four sides."
+        type: "diamond",
+        color: "#9b59b6"
     },
     {
         name: "Heart",
-        className: "shape-heart",
-        emoji: "❤️",
-        sentence: "A heart shows love."
+        type: "heart",
+        emoji: "❤️"
     },
     {
         name: "Oval",
-        className: "shape-oval",
-        emoji: null,
-        sentence: "An egg is oval-shaped."
+        type: "oval",
+        color: "#ff922b"
     }
 ];
-
 
 const TOTAL_QUESTIONS = 10;
 
 let questions = [];
-
 let currentQuestion = 0;
-
 let score = 0;
-
 let answered = false;
-
-let earnedStarsThisGame = 0;
+let earnedStars = 0;
 
 const STAR_KEY = "littleLearnerStars";
 
@@ -73,14 +60,9 @@ const STAR_KEY = "littleLearnerStars";
 // PAGE LOAD
 // ========================================
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
-
-        updateStars();
-
-    }
-);
+document.addEventListener("DOMContentLoaded", function () {
+    updateStars();
+});
 
 
 // ========================================
@@ -89,83 +71,35 @@ document.addEventListener(
 
 function startGame() {
 
-    questions = createQuestions();
-
     currentQuestion = 0;
-
     score = 0;
-
-    earnedStarsThisGame = 0;
-
+    earnedStars = 0;
     answered = false;
 
+    questions = [];
 
-    document.getElementById(
-        "startScreen"
-    ).classList.add("hidden");
+    // Create 10 questions
+    for (let i = 0; i < TOTAL_QUESTIONS; i++) {
 
+        const randomIndex =
+            Math.floor(Math.random() * shapes.length);
 
-    document.getElementById(
-        "resultScreen"
-    ).classList.add("hidden");
-
-
-    document.getElementById(
-        "gameScreen"
-    ).classList.remove("hidden");
-
-
-    document.getElementById(
-        "score"
-    ).textContent = "0";
-
-
-    showQuestion();
-
-}
-
-
-// ========================================
-// CREATE QUESTIONS
-// ========================================
-
-function createQuestions() {
-
-    const shuffled =
-        [...shapesData].sort(
-            () => Math.random() - 0.5
-        );
-
-
-    const result = [];
-
-
-    for (
-        let i = 0;
-        i < TOTAL_QUESTIONS;
-        i++
-    ) {
-
-        const shape =
-            shuffled[i % shuffled.length];
-
-
-        const type =
-            i % 2 === 0
-                ? "identify"
-                : "find";
-
-
-        result.push({
-            shape: shape,
-            type: type
-        });
-
+        questions.push(shapes[randomIndex]);
     }
 
+    document
+        .getElementById("startScreen")
+        .classList.add("hidden");
 
-    return result;
+    document
+        .getElementById("resultScreen")
+        .classList.add("hidden");
 
+    document
+        .getElementById("gameScreen")
+        .classList.remove("hidden");
+
+    showQuestion();
 }
 
 
@@ -177,99 +111,176 @@ function showQuestion() {
 
     answered = false;
 
+    const shape = questions[currentQuestion];
 
-    const question =
-        questions[currentQuestion];
-
-
-    const shape =
-        question.shape;
-
-
-    document.getElementById(
-        "questionNumber"
-    ).textContent =
+    document.getElementById("questionNumber").textContent =
         currentQuestion + 1;
 
-
-    document.getElementById(
-        "score"
-    ).textContent =
+    document.getElementById("score").textContent =
         score;
 
+    const percentage =
+        ((currentQuestion + 1) / TOTAL_QUESTIONS) * 100;
 
-    const progress =
-        ((currentQuestion + 1) /
-            TOTAL_QUESTIONS) * 100;
+    document.getElementById("progressFill").style.width =
+        percentage + "%";
 
+    document.getElementById("questionText").textContent =
+        "Which shape is this?";
 
-    document.getElementById(
-        "progressFill"
-    ).style.width =
-        progress + "%";
-
-
-    const questionText =
-        document.getElementById(
-            "questionText"
-        );
-
-
-    if (question.type === "identify") {
-
-        questionText.textContent =
-            "Which shape is this?";
-
-    } else {
-
-        questionText.textContent =
-            "Find the " +
-            shape.name +
-            " shape!";
-
-    }
-
-
-    showShape(shape);
-
+    drawShape(shape);
 
     createOptions(shape.name);
 
+    document.getElementById("feedback").textContent = "";
+
+    document.getElementById("feedback").className =
+        "feedback";
 }
 
 
 // ========================================
-// SHOW SHAPE
+// DRAW SHAPE
 // ========================================
 
-function showShape(shape) {
+function drawShape(shape) {
 
     const visual =
-        document.getElementById(
-            "questionVisual"
-        );
+        document.getElementById("questionVisual");
+
+    visual.innerHTML = "";
+
+    visual.className = "question-visual";
 
 
-    visual.className =
-        "question-visual";
+    // Emoji shapes
+    if (shape.type === "star") {
 
+        visual.textContent = "⭐";
 
-    visual.textContent =
-        "";
+        visual.style.fontSize = "150px";
 
-
-    if (shape.emoji) {
-
-        visual.textContent =
-            shape.emoji;
-
+        return;
     }
 
 
-    visual.classList.add(
-        shape.className
-    );
+    if (shape.type === "heart") {
 
+        visual.textContent = "❤️";
+
+        visual.style.fontSize = "150px";
+
+        return;
+    }
+
+
+    // Circle
+    if (shape.type === "circle") {
+
+        const element =
+            document.createElement("div");
+
+        element.style.width = "160px";
+        element.style.height = "160px";
+        element.style.background = shape.color;
+        element.style.borderRadius = "50%";
+
+        visual.appendChild(element);
+
+        return;
+    }
+
+
+    // Square
+    if (shape.type === "square") {
+
+        const element =
+            document.createElement("div");
+
+        element.style.width = "155px";
+        element.style.height = "155px";
+        element.style.background = shape.color;
+        element.style.borderRadius = "15px";
+
+        visual.appendChild(element);
+
+        return;
+    }
+
+
+    // Triangle
+    if (shape.type === "triangle") {
+
+        const element =
+            document.createElement("div");
+
+        element.style.width = "0";
+        element.style.height = "0";
+
+        element.style.borderLeft =
+            "85px solid transparent";
+
+        element.style.borderRight =
+            "85px solid transparent";
+
+        element.style.borderBottom =
+            "150px solid " + shape.color;
+
+        visual.appendChild(element);
+
+        return;
+    }
+
+
+    // Rectangle
+    if (shape.type === "rectangle") {
+
+        const element =
+            document.createElement("div");
+
+        element.style.width = "190px";
+        element.style.height = "115px";
+        element.style.background = shape.color;
+        element.style.borderRadius = "15px";
+
+        visual.appendChild(element);
+
+        return;
+    }
+
+
+    // Diamond
+    if (shape.type === "diamond") {
+
+        const element =
+            document.createElement("div");
+
+        element.style.width = "120px";
+        element.style.height = "120px";
+        element.style.background = shape.color;
+        element.style.transform = "rotate(45deg)";
+        element.style.borderRadius = "15px";
+
+        visual.appendChild(element);
+
+        return;
+    }
+
+
+    // Oval
+    if (shape.type === "oval") {
+
+        const element =
+            document.createElement("div");
+
+        element.style.width = "190px";
+        element.style.height = "120px";
+        element.style.background = shape.color;
+        element.style.borderRadius = "50%";
+
+        visual.appendChild(element);
+
+    }
 }
 
 
@@ -277,110 +288,55 @@ function showShape(shape) {
 // CREATE OPTIONS
 // ========================================
 
-function createOptions(correctName) {
+function createOptions(correctAnswer) {
 
     const container =
-        document.getElementById(
-            "optionsContainer"
-        );
-
+        document.getElementById("optionsContainer");
 
     container.innerHTML = "";
 
 
-    const optionNames =
-        createRandomOptions(
-            correctName
-        );
+    let options = [correctAnswer];
+
+    let available =
+        shapes
+            .map(shape => shape.name)
+            .filter(name => name !== correctAnswer);
 
 
-    optionNames.forEach(
-        function (name) {
+    // Shuffle wrong answers
+    available.sort(() => Math.random() - 0.5);
 
-            const button =
-                document.createElement(
-                    "button"
-                );
+    options.push(available[0]);
+    options.push(available[1]);
 
 
-            button.className =
-                "option-button";
+    // Shuffle all 3
+    options.sort(() => Math.random() - 0.5);
 
 
-            button.textContent =
-                name;
+    options.forEach(function (option) {
 
+        const button =
+            document.createElement("button");
 
-            button.onclick =
-                function () {
+        button.className = "option-button";
 
-                    checkAnswer(
-                        name,
-                        correctName,
-                        button
-                    );
+        button.textContent = option;
 
-                };
+        button.onclick = function () {
 
-
-            container.appendChild(
+            checkAnswer(
+                option,
+                correctAnswer,
                 button
             );
 
-        }
-    );
+        };
 
+        container.appendChild(button);
 
-    document.getElementById(
-        "feedback"
-    ).textContent = "";
-
-
-    document.getElementById(
-        "feedback"
-    ).className =
-        "feedback";
-
-}
-
-
-// ========================================
-// RANDOM OPTIONS
-// ========================================
-
-function createRandomOptions(correctName) {
-
-    const names =
-        shapesData.map(
-            shape => shape.name
-        );
-
-
-    const wrongAnswers =
-        names.filter(
-            name => name !== correctName
-        );
-
-
-    wrongAnswers.sort(
-        () => Math.random() - 0.5
-    );
-
-
-    const options = [
-        correctName,
-        wrongAnswers[0],
-        wrongAnswers[1]
-    ];
-
-
-    options.sort(
-        () => Math.random() - 0.5
-    );
-
-
-    return options;
-
+    });
 }
 
 
@@ -389,17 +345,14 @@ function createRandomOptions(correctName) {
 // ========================================
 
 function checkAnswer(
-    selected,
-    correct,
+    selectedAnswer,
+    correctAnswer,
     clickedButton
 ) {
 
     if (answered) {
-
         return;
-
     }
-
 
     answered = true;
 
@@ -410,102 +363,76 @@ function checkAnswer(
         );
 
 
-    buttons.forEach(
-        function (button) {
+    buttons.forEach(function (button) {
 
-            button.disabled = true;
+        button.disabled = true;
 
-            if (
-                button.textContent === correct
-            ) {
+        if (
+            button.textContent === correctAnswer
+        ) {
 
-                button.classList.add(
-                    "correct"
-                );
-
-            }
+            button.classList.add("correct");
 
         }
-    );
+
+    });
 
 
     const feedback =
-        document.getElementById(
-            "feedback"
-        );
+        document.getElementById("feedback");
 
 
-    if (selected === correct) {
+    if (selectedAnswer === correctAnswer) {
 
         score++;
 
-        earnedStarsThisGame++;
+        earnedStars++;
 
-        clickedButton.classList.add(
-            "correct"
-        );
-
+        clickedButton.classList.add("correct");
 
         feedback.textContent =
             "🎉 Correct! Great job! ⭐";
 
-
-        feedback.classList.add(
-            "correct"
-        );
-
+        feedback.className =
+            "feedback correct";
 
         addStar();
 
-
     } else {
 
-        clickedButton.classList.add(
-            "wrong"
-        );
-
+        clickedButton.classList.add("wrong");
 
         feedback.textContent =
             "💪 Nice try! The answer is " +
-            correct + ".";
+            correctAnswer + ".";
 
-
-        feedback.classList.add(
-            "wrong"
-        );
+        feedback.className =
+            "feedback wrong";
 
     }
 
 
-    document.getElementById(
-        "score"
-    ).textContent =
+    document.getElementById("score").textContent =
         score;
 
 
-    setTimeout(
-        function () {
+    setTimeout(function () {
 
-            currentQuestion++;
+        currentQuestion++;
 
+        if (
+            currentQuestion >= TOTAL_QUESTIONS
+        ) {
 
-            if (
-                currentQuestion >=
-                TOTAL_QUESTIONS
-            ) {
+            showResult();
 
-                showResult();
+        } else {
 
-            } else {
+            showQuestion();
 
-                showQuestion();
+        }
 
-            }
-
-        },
-        1300
-    );
-
+    }, 1200);
 }
 
 
@@ -517,45 +444,39 @@ function addStar() {
 
     let stars =
         Number(
-            localStorage.getItem(
-                STAR_KEY
-            ) || 0
+            localStorage.getItem(STAR_KEY) || 0
         );
 
-
     stars++;
-
 
     localStorage.setItem(
         STAR_KEY,
         stars
     );
 
-
     updateStars();
-
 }
 
 
 // ========================================
-// UPDATE STAR DISPLAY
+// UPDATE STARS
 // ========================================
 
 function updateStars() {
 
     const stars =
         Number(
-            localStorage.getItem(
-                STAR_KEY
-            ) || 0
+            localStorage.getItem(STAR_KEY) || 0
         );
 
+    const starElement =
+        document.getElementById("starCount");
 
-    document.getElementById(
-        "starCount"
-    ).textContent =
-        stars;
+    if (starElement) {
 
+        starElement.textContent = stars;
+
+    }
 }
 
 
@@ -574,43 +495,25 @@ function listenQuestion() {
         );
 
         return;
-
     }
 
 
-    const question =
-        questions[currentQuestion];
+    if (!questions.length) {
+        return;
+    }
 
 
     const shape =
-        question.shape;
+        questions[currentQuestion];
 
 
     speechSynthesis.cancel();
 
 
-    let text;
-
-
-    if (question.type === "identify") {
-
-        text =
-            "Which shape is this? " +
-            shape.name;
-
-    } else {
-
-        text =
-            "Find the " +
-            shape.name +
-            " shape.";
-
-    }
-
-
     const speech =
         new SpeechSynthesisUtterance(
-            text
+            "Which shape is this? " +
+            shape.name
         );
 
 
@@ -618,13 +521,10 @@ function listenQuestion() {
 
     speech.rate = 0.75;
 
-    speech.pitch = 1.15;
+    speech.pitch = 1.1;
 
 
-    speechSynthesis.speak(
-        speech
-    );
-
+    speechSynthesis.speak(speech);
 }
 
 
@@ -634,26 +534,22 @@ function listenQuestion() {
 
 function showResult() {
 
-    document.getElementById(
-        "gameScreen"
-    ).classList.add("hidden");
+    document
+        .getElementById("gameScreen")
+        .classList.add("hidden");
 
 
-    document.getElementById(
-        "resultScreen"
-    ).classList.remove("hidden");
+    document
+        .getElementById("resultScreen")
+        .classList.remove("hidden");
 
 
-    document.getElementById(
-        "finalScore"
-    ).textContent =
+    document.getElementById("finalScore").textContent =
         score;
 
 
-    document.getElementById(
-        "earnedStars"
-    ).textContent =
-        earnedStarsThisGame;
+    document.getElementById("earnedStars").textContent =
+        earnedStars;
 
 
     let message;
@@ -682,12 +578,9 @@ function showResult() {
     }
 
 
-    document.getElementById(
-        "resultMessage"
-    ).textContent =
+    document.getElementById("resultMessage").textContent =
         message;
 
 
     updateStars();
-
 }
