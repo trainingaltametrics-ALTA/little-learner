@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,136 +13,594 @@
 
 <body>
 
-  <header class="game-header">
+<header class="game-header">
 
-    <a href="../index.html" class="back-button">
-      🏠 Home
+  <a href="../index.html" class="back-button">
+    🏠 Home
+  </a>
+
+  <div class="game-title">
+    🍎 Fruit Game
+  </div>
+
+  <div class="stars">
+    ⭐ <span id="starCount">0</span>
+  </div>
+
+</header>
+
+
+<main class="game-container">
+
+  <!-- START SCREEN -->
+  <section id="startScreen" class="game-screen">
+
+    <div class="game-hero">
+      🍎 🍌 🍊
+    </div>
+
+    <h1>🍎 Fruit Adventure!</h1>
+
+    <p>Let's learn about fruits!</p>
+
+    <p class="game-instruction">
+      Look at the fruit and choose the correct answer.
+    </p>
+
+    <button id="startButton" class="start-button">
+      🎮 Start Game
+    </button>
+
+  </section>
+
+
+  <!-- GAME SCREEN -->
+  <section id="gameScreen" class="game-screen hidden">
+
+    <div class="question-top">
+
+      <span>
+        Question
+        <strong id="questionNumber">1</strong>
+        of 10
+      </span>
+
+      <span>
+        ⭐
+        <strong id="score">0</strong>
+      </span>
+
+    </div>
+
+
+    <div class="progress-bar">
+      <div id="gameProgress"></div>
+    </div>
+
+
+    <div class="question-card">
+
+      <div id="fruitPicture" class="game-fruit">
+        🍎
+      </div>
+
+      <h2 id="questionText">
+        Which fruit is this?
+      </h2>
+
+      <button id="listenButton" class="listen-button">
+        🔊 Listen
+      </button>
+
+    </div>
+
+
+    <div id="options" class="options-container"></div>
+
+    <div id="feedback" class="feedback"></div>
+
+  </section>
+
+
+  <!-- RESULT SCREEN -->
+  <section id="resultScreen" class="game-screen hidden">
+
+    <div class="result-emoji">
+      🏆
+    </div>
+
+    <h1>🎉 Game Complete!</h1>
+
+    <p id="resultMessage"></p>
+
+    <div class="final-score">
+      Score:
+      <strong id="finalScore">0</strong>
+      / 10
+    </div>
+
+    <div class="earned-stars">
+      ⭐ Stars Earned:
+      <strong id="earnedStars">0</strong>
+    </div>
+
+    <button id="playAgainButton" class="play-again-button">
+      🔄 Play Again
+    </button>
+
+    <a href="fruits.html" class="learn-button">
+      🍎 Learn Fruits
     </a>
 
-    <div class="game-title">
-      🍎 Fruit Game
-    </div>
+    <a href="../index.html" class="home-button">
+      🏠 Back Home
+    </a>
 
-    <div class="stars">
-      ⭐ <span id="starCount">0</span>
-    </div>
+  </section>
 
-  </header>
+</main>
 
 
-  <main class="game-container">
+<script>
 
-    <!-- START -->
-    <section id="startScreen" class="game-screen">
-
-      <div class="game-hero">
-        🍎 🍌 🍊
-      </div>
-
-      <h1>🍎 Fruit Adventure!</h1>
-
-      <p>Let's learn about fruits!</p>
-
-      <p class="game-instruction">
-        Look at the fruit and choose the correct answer.
-      </p>
-
-      <button id="startButton" class="start-button">
-        🎮 Start Game
-      </button>
-
-    </section>
-
-
-    <!-- GAME -->
-    <section id="gameScreen" class="game-screen hidden">
-
-      <div class="question-top">
-
-        <span>
-          Question
-          <strong id="questionNumber">1</strong>
-          of 10
-        </span>
-
-        <span>
-          ⭐
-          <strong id="score">0</strong>
-        </span>
-
-      </div>
-
-
-      <div class="progress-bar">
-        <div id="gameProgress"></div>
-      </div>
-
-
-      <div class="question-card">
-
-        <div id="fruitPicture" class="game-fruit">
-          🍎
-        </div>
-
-        <h2 id="questionText">
-          Which fruit is this?
-        </h2>
-
-        <button id="listenButton" class="listen-button">
-          🔊 Listen
-        </button>
-
-      </div>
+const fruits = [
+  {
+    name: "Apple",
+    emoji: "🍎",
+    color: "Red"
+  },
+  {
+    name: "Banana",
+    emoji: "🍌",
+    color: "Yellow"
+  },
+  {
+    name: "Orange",
+    emoji: "🍊",
+    color: "Orange"
+  },
+  {
+    name: "Strawberry",
+    emoji: "🍓",
+    color: "Red"
+  },
+  {
+    name: "Grapes",
+    emoji: "🍇",
+    color: "Purple"
+  },
+  {
+    name: "Watermelon",
+    emoji: "🍉",
+    color: "Green and Red"
+  },
+  {
+    name: "Mango",
+    emoji: "🥭",
+    color: "Yellow and Orange"
+  },
+  {
+    name: "Pineapple",
+    emoji: "🍍",
+    color: "Yellow"
+  },
+  {
+    name: "Peach",
+    emoji: "🍑",
+    color: "Peach"
+  },
+  {
+    name: "Cherry",
+    emoji: "🍒",
+    color: "Red"
+  }
+];
 
 
-      <div id="options" class="options-container"></div>
+let questions = [];
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
 
 
-      <div id="feedback" class="feedback"></div>
+/* LOAD STARS */
 
-    </section>
+function loadStars() {
 
+  const stars =
+    Number(localStorage.getItem("littleLearnerStars")) || 0;
 
-    <!-- RESULT -->
-    <section id="resultScreen" class="game-screen hidden">
-
-      <div class="result-emoji">
-        🏆
-      </div>
-
-      <h1>🎉 Game Complete!</h1>
-
-      <p id="resultMessage"></p>
-
-      <div class="final-score">
-        Score:
-        <strong id="finalScore">0</strong>
-        / 10
-      </div>
-
-      <div class="earned-stars">
-        ⭐ Stars Earned:
-        <strong id="earnedStars">0</strong>
-      </div>
-
-      <button id="playAgainButton" class="play-again-button">
-        🔄 Play Again
-      </button>
-
-      <a href="fruits.html" class="learn-button">
-        🍎 Learn Fruits
-      </a>
-
-      <a href="../index.html" class="home-button">
-        🏠 Back Home
-      </a>
-
-    </section>
-
-  </main>
+  document.getElementById("starCount").textContent = stars;
+}
 
 
-  <script src="../js/fruits-game.js"></script>
+/* ADD STAR */
+
+function addStar() {
+
+  let stars =
+    Number(localStorage.getItem("littleLearnerStars")) || 0;
+
+  stars++;
+
+  localStorage.setItem(
+    "littleLearnerStars",
+    stars
+  );
+
+  document.getElementById("starCount")
+    .textContent = stars;
+}
+
+
+/* START GAME */
+
+function startGame() {
+
+  questions = [...fruits];
+
+  questions.sort(function() {
+    return Math.random() - 0.5;
+  });
+
+  currentQuestion = 0;
+  score = 0;
+  answered = false;
+
+  document.getElementById("startScreen")
+    .classList.add("hidden");
+
+  document.getElementById("resultScreen")
+    .classList.add("hidden");
+
+  document.getElementById("gameScreen")
+    .classList.remove("hidden");
+
+  document.getElementById("score")
+    .textContent = "0";
+
+  showQuestion();
+}
+
+
+/* SHOW QUESTION */
+
+function showQuestion() {
+
+  answered = false;
+
+  const fruit =
+    questions[currentQuestion];
+
+  document.getElementById("questionNumber")
+    .textContent = currentQuestion + 1;
+
+  document.getElementById("fruitPicture")
+    .textContent = fruit.emoji;
+
+  document.getElementById("questionText")
+    .textContent = "Which fruit is this?";
+
+  document.getElementById("feedback")
+    .textContent = "";
+
+  document.getElementById("feedback")
+    .className = "feedback";
+
+  document.getElementById("score")
+    .textContent = score;
+
+  document.getElementById("gameProgress")
+    .style.width =
+    ((currentQuestion + 1) / 10 * 100) + "%";
+
+  createOptions(fruit);
+}
+
+
+/* CREATE OPTIONS */
+
+function createOptions(correctFruit) {
+
+  let wrongFruits =
+    fruits.filter(function(fruit) {
+
+      return fruit.name !== correctFruit.name;
+
+    });
+
+
+  wrongFruits.sort(function() {
+    return Math.random() - 0.5;
+  });
+
+
+  let options = [
+    correctFruit,
+    wrongFruits[0],
+    wrongFruits[1]
+  ];
+
+
+  options.sort(function() {
+    return Math.random() - 0.5;
+  });
+
+
+  const container =
+    document.getElementById("options");
+
+  container.innerHTML = "";
+
+
+  options.forEach(function(fruit) {
+
+    const button =
+      document.createElement("button");
+
+    button.className =
+      "option-button";
+
+    button.textContent =
+      fruit.emoji + " " + fruit.name;
+
+
+    button.addEventListener(
+      "click",
+      function() {
+
+        checkAnswer(
+          fruit.name,
+          correctFruit.name,
+          button
+        );
+
+      }
+    );
+
+
+    container.appendChild(button);
+
+  });
+}
+
+
+/* CHECK ANSWER */
+
+function checkAnswer(
+  selected,
+  correct,
+  selectedButton
+) {
+
+  if (answered) {
+    return;
+  }
+
+  answered = true;
+
+
+  const buttons =
+    document.querySelectorAll(
+      ".option-button"
+    );
+
+
+  buttons.forEach(function(button) {
+
+    button.disabled = true;
+
+  });
+
+
+  const feedback =
+    document.getElementById("feedback");
+
+
+  if (selected === correct) {
+
+    score++;
+
+
+    selectedButton.classList.add(
+      "correct"
+    );
+
+
+    addStar();
+
+
+    feedback.textContent =
+      "🎉 Correct! Great job! ⭐";
+
+
+    feedback.className =
+      "feedback correct";
+
+
+  } else {
+
+    selectedButton.classList.add(
+      "wrong"
+    );
+
+
+    buttons.forEach(function(button) {
+
+      if (
+        button.textContent.includes(correct)
+      ) {
+
+        button.classList.add("correct");
+
+      }
+
+    });
+
+
+    feedback.textContent =
+      "😊 Nice try! The answer is " +
+      correct + ".";
+
+
+    feedback.className =
+      "feedback wrong";
+
+  }
+
+
+  document.getElementById("score")
+    .textContent = score;
+
+
+  setTimeout(function() {
+
+    currentQuestion++;
+
+
+    if (
+      currentQuestion <
+      questions.length
+    ) {
+
+      showQuestion();
+
+    } else {
+
+      showResult();
+
+    }
+
+  }, 1200);
+}
+
+
+/* LISTEN */
+
+function listenQuestion() {
+
+  if (
+    !questions.length ||
+    !window.speechSynthesis
+  ) {
+    return;
+  }
+
+
+  const fruit =
+    questions[currentQuestion];
+
+
+  const speech =
+    new SpeechSynthesisUtterance(
+      "Which fruit is this? " +
+      fruit.name + ". " +
+      "This is a " +
+      fruit.color +
+      " fruit."
+    );
+
+
+  speech.lang = "en-US";
+  speech.rate = 0.75;
+  speech.pitch = 1.2;
+
+
+  speechSynthesis.cancel();
+
+  speechSynthesis.speak(speech);
+}
+
+
+/* RESULT */
+
+function showResult() {
+
+  document.getElementById("gameScreen")
+    .classList.add("hidden");
+
+  document.getElementById("resultScreen")
+    .classList.remove("hidden");
+
+
+  document.getElementById("finalScore")
+    .textContent = score;
+
+
+  document.getElementById("earnedStars")
+    .textContent = score;
+
+
+  let message = "";
+
+
+  if (score === 10) {
+
+    message =
+      "🏆 Perfect! You are a Fruit Superstar!";
+
+  } else if (score >= 8) {
+
+    message =
+      "🌟 Wonderful! You know your fruits very well!";
+
+  } else if (score >= 5) {
+
+    message =
+      "👏 Good job! Keep practicing your fruits!";
+
+  } else {
+
+    message =
+      "💪 Nice try! Let's learn some more fruits!";
+
+  }
+
+
+  document.getElementById("resultMessage")
+    .textContent = message;
+
+
+  loadStars();
+}
+
+
+/* BUTTONS */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function() {
+
+    loadStars();
+
+
+    document.getElementById(
+      "startButton"
+    ).addEventListener(
+      "click",
+      startGame
+    );
+
+
+    document.getElementById(
+      "listenButton"
+    ).addEventListener(
+      "click",
+      listenQuestion
+    );
+
+
+    document.getElementById(
+      "playAgainButton"
+    ).addEventListener(
+      "click",
+      startGame
+    );
+
+  }
+);
+
+</script>
 
 </body>
 </html>
