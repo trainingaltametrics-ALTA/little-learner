@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Animals Game - Little Learner</title>
 
   <link rel="stylesheet" href="../style.css">
@@ -12,7 +13,10 @@
 <body>
 
   <header class="game-header">
-    <a href="../index.html" class="back-button">🏠 Home</a>
+
+    <a href="../index.html" class="back-button">
+      🏠 Home
+    </a>
 
     <div class="game-title">
       🐾 Animal Game
@@ -21,11 +25,13 @@
     <div class="stars">
       ⭐ <span id="starCount">0</span>
     </div>
+
   </header>
+
 
   <main class="game-container">
 
-    <!-- START SCREEN -->
+    <!-- START -->
     <section id="startScreen" class="game-screen">
 
       <div class="game-hero">
@@ -34,39 +40,42 @@
 
       <h1>🐾 Animal Adventure!</h1>
 
-      <p>
-        Can you recognize the animals?
-      </p>
+      <p>Let's learn about animals!</p>
 
       <p class="game-instruction">
-        Look at the animal, listen and choose the correct answer! 🎯
+        Look at the animal and choose the correct answer.
       </p>
 
-      <button class="start-button" onclick="startGame()">
+      <button id="startButton" class="start-button">
         🎮 Start Game
       </button>
 
     </section>
 
 
-    <!-- GAME SCREEN -->
-    <section id="gameScreen" class="game-screen" style="display:none;">
+    <!-- GAME -->
+    <section id="gameScreen" class="game-screen hidden">
 
       <div class="question-top">
 
         <span>
-          Question <strong id="questionNumber">1</strong> of 10
+          Question
+          <strong id="questionNumber">1</strong>
+          of 10
         </span>
 
         <span>
-          Score: ⭐ <strong id="score">0</strong>
+          ⭐
+          <strong id="score">0</strong>
         </span>
 
       </div>
+
 
       <div class="progress-bar">
         <div id="gameProgress"></div>
       </div>
+
 
       <div class="question-card">
 
@@ -78,21 +87,23 @@
           Which animal is this?
         </h2>
 
-        <button class="listen-button" onclick="listenQuestion()">
+        <button id="listenButton" class="listen-button">
           🔊 Listen
         </button>
 
       </div>
 
+
       <div id="options" class="options-container"></div>
+
 
       <div id="feedback" class="feedback"></div>
 
     </section>
 
 
-    <!-- RESULT SCREEN -->
-    <section id="resultScreen" class="game-screen" style="display:none;">
+    <!-- RESULT -->
+    <section id="resultScreen" class="game-screen hidden">
 
       <div class="result-emoji">
         🏆
@@ -103,7 +114,9 @@
       <p id="resultMessage"></p>
 
       <div class="final-score">
-        Score: <strong id="finalScore">0</strong> / 10
+        Score:
+        <strong id="finalScore">0</strong>
+        / 10
       </div>
 
       <div class="earned-stars">
@@ -111,7 +124,7 @@
         <strong id="earnedStars">0</strong>
       </div>
 
-      <button class="play-again-button" onclick="startGame()">
+      <button id="playAgainButton" class="play-again-button">
         🔄 Play Again
       </button>
 
@@ -126,6 +139,7 @@
     </section>
 
   </main>
+
 
   <script src="../js/animals-game.js"></script>
 
