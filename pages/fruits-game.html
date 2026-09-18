@@ -1,10 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Little Learner - Fruits Game</title>
+
+  <title>Fruits Game - Little Learner</title>
 
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="../css/fruits-game.css">
@@ -12,70 +12,74 @@
 
 <body>
 
-  <div class="game-container">
+  <header class="game-header">
 
-    <!-- START SCREEN -->
-    <section id="startScreen" class="screen">
+    <a href="../index.html" class="back-button">
+      🏠 Home
+    </a>
 
-      <div class="game-icon">🍎🍌🍊</div>
+    <div class="game-title">
+      🍎 Fruit Game
+    </div>
 
-      <h1>🍓 Fruits Game 🍍</h1>
+    <div class="stars">
+      ⭐ <span id="starCount">0</span>
+    </div>
 
-      <p class="subtitle">
-        Let's see how well you know your fruits!
-      </p>
+  </header>
 
-      <div class="game-info">
-        <div>🍎 10 Questions</div>
-        <div>⭐ Earn Stars</div>
-        <div>🎧 Listen & Learn</div>
+
+  <main class="game-container">
+
+    <!-- START -->
+    <section id="startScreen" class="game-screen">
+
+      <div class="game-hero">
+        🍎 🍌 🍊
       </div>
 
-      <button id="startButton" class="primary-button">
-        ▶️ Start Game
+      <h1>🍎 Fruit Adventure!</h1>
+
+      <p>Let's learn about fruits!</p>
+
+      <p class="game-instruction">
+        Look at the fruit and choose the correct answer.
+      </p>
+
+      <button id="startButton" class="start-button">
+        🎮 Start Game
       </button>
-
-      <a href="fruits.html" class="back-link">
-        📚 Learn Fruits
-      </a>
-
-      <a href="../index.html" class="back-link">
-        🏠 Back Home
-      </a>
 
     </section>
 
 
-    <!-- GAME SCREEN -->
-    <section id="gameScreen" class="screen hidden">
+    <!-- GAME -->
+    <section id="gameScreen" class="game-screen hidden">
 
-      <div class="game-header">
+      <div class="question-top">
 
-        <button id="listenButton" class="listen-button">
-          🔊 Listen
-        </button>
+        <span>
+          Question
+          <strong id="questionNumber">1</strong>
+          of 10
+        </span>
 
-        <div class="score-box">
-          ⭐ <span id="starCount">0</span>
-        </div>
-
-      </div>
-
-      <div class="progress-area">
-
-        <div class="question-number">
-          Question <span id="questionNumber">1</span> of 10
-        </div>
-
-        <div class="progress-bar">
-          <div id="progressFill"></div>
-        </div>
+        <span>
+          ⭐
+          <strong id="score">0</strong>
+        </span>
 
       </div>
+
+
+      <div class="progress-bar">
+        <div id="gameProgress"></div>
+      </div>
+
 
       <div class="question-card">
 
-        <div id="fruitVisual" class="fruit-visual">
+        <div id="fruitPicture" class="game-fruit">
           🍎
         </div>
 
@@ -83,57 +87,61 @@
           Which fruit is this?
         </h2>
 
-        <div id="optionsContainer" class="options-container">
-        </div>
-
-        <div id="feedback" class="feedback"></div>
+        <button id="listenButton" class="listen-button">
+          🔊 Listen
+        </button>
 
       </div>
+
+
+      <div id="options" class="options-container"></div>
+
+
+      <div id="feedback" class="feedback"></div>
 
     </section>
 
 
-    <!-- RESULT SCREEN -->
-    <section id="resultScreen" class="screen hidden">
+    <!-- RESULT -->
+    <section id="resultScreen" class="game-screen hidden">
 
-      <div class="result-icon">🏆</div>
+      <div class="result-emoji">
+        🏆
+      </div>
 
-      <h1>Great Job! 🎉</h1>
+      <h1>🎉 Game Complete!</h1>
 
-      <p id="resultMessage">
-        You did a wonderful job!
-      </p>
+      <p id="resultMessage"></p>
 
       <div class="final-score">
-        <div>Correct Answers</div>
-        <strong>
-          <span id="finalScore">0</span> / 10
-        </strong>
+        Score:
+        <strong id="finalScore">0</strong>
+        / 10
       </div>
 
       <div class="earned-stars">
-        ⭐ You earned <strong><span id="earnedStars">0</span></strong> stars!
+        ⭐ Stars Earned:
+        <strong id="earnedStars">0</strong>
       </div>
 
-      <button id="playAgainButton" class="primary-button">
+      <button id="playAgainButton" class="play-again-button">
         🔄 Play Again
       </button>
 
-      <a href="fruits.html" class="back-link">
-        📚 Learn Fruits
+      <a href="fruits.html" class="learn-button">
+        🍎 Learn Fruits
       </a>
 
-      <a href="../index.html" class="back-link">
+      <a href="../index.html" class="home-button">
         🏠 Back Home
       </a>
 
     </section>
 
-  </div>
+  </main>
+
 
   <script src="../js/fruits-game.js"></script>
 
 </body>
 </html>
-
-
