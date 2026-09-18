@@ -1,1 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animals Game - Little Learner</title>
 
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../css/animals-game.css">
+</head>
+
+<body>
+
+  <header class="game-header">
+    <a href="../index.html" class="back-button">🏠 Home</a>
+
+    <div class="game-title">
+      🐾 Animal Game
+    </div>
+
+    <div class="stars">
+      ⭐ <span id="starCount">0</span>
+    </div>
+  </header>
+
+  <main class="game-container">
+
+    <!-- START SCREEN -->
+    <section id="startScreen" class="game-screen">
+
+      <div class="game-hero">
+        🐶 🐱 🦁
+      </div>
+
+      <h1>🐾 Animal Adventure!</h1>
+
+      <p>
+        Can you recognize the animals?
+      </p>
+
+      <p class="game-instruction">
+        Look at the animal, listen and choose the correct answer! 🎯
+      </p>
+
+      <button class="start-button" onclick="startGame()">
+        🎮 Start Game
+      </button>
+
+    </section>
+
+
+    <!-- GAME SCREEN -->
+    <section id="gameScreen" class="game-screen" style="display:none;">
+
+      <div class="question-top">
+
+        <span>
+          Question <strong id="questionNumber">1</strong> of 10
+        </span>
+
+        <span>
+          Score: ⭐ <strong id="score">0</strong>
+        </span>
+
+      </div>
+
+      <div class="progress-bar">
+        <div id="gameProgress"></div>
+      </div>
+
+      <div class="question-card">
+
+        <div id="animalPicture" class="game-animal">
+          🐶
+        </div>
+
+        <h2 id="questionText">
+          Which animal is this?
+        </h2>
+
+        <button class="listen-button" onclick="listenQuestion()">
+          🔊 Listen
+        </button>
+
+      </div>
+
+      <div id="options" class="options-container"></div>
+
+      <div id="feedback" class="feedback"></div>
+
+    </section>
+
+
+    <!-- RESULT SCREEN -->
+    <section id="resultScreen" class="game-screen" style="display:none;">
+
+      <div class="result-emoji">
+        🏆
+      </div>
+
+      <h1>🎉 Game Complete!</h1>
+
+      <p id="resultMessage"></p>
+
+      <div class="final-score">
+        Score: <strong id="finalScore">0</strong> / 10
+      </div>
+
+      <div class="earned-stars">
+        ⭐ Stars Earned:
+        <strong id="earnedStars">0</strong>
+      </div>
+
+      <button class="play-again-button" onclick="startGame()">
+        🔄 Play Again
+      </button>
+
+      <a href="animals.html" class="learn-button">
+        🐾 Learn Animals
+      </a>
+
+      <a href="../index.html" class="home-button">
+        🏠 Back Home
+      </a>
+
+    </section>
+
+  </main>
+
+  <script src="../js/animals-game.js"></script>
+
+</body>
+</html>
