@@ -9,6 +9,10 @@ body {
   background: linear-gradient(135deg, #dff9fb, #c7ecee, #ffeaa7);
 }
 
+.hidden {
+  display: none !important;
+}
+
 .game-header {
   display: flex;
   align-items: center;
@@ -30,7 +34,6 @@ body {
 .game-title {
   font-size: 25px;
   font-weight: bold;
-  color: #2d3436;
 }
 
 .stars {
@@ -53,32 +56,28 @@ body {
 }
 
 .game-hero {
-  font-size: 90px;
-  margin: 10px 0 20px;
-  letter-spacing: 10px;
+  font-size: 85px;
+  margin-bottom: 20px;
 }
 
 .game-screen h1 {
-  font-size: 36px;
   color: #6c5ce7;
-  margin: 10px 0;
+  font-size: 36px;
 }
 
-.game-screen > p {
-  font-size: 21px;
+.game-screen p {
+  font-size: 20px;
   color: #555;
 }
 
 .game-instruction {
   font-size: 17px !important;
-  margin: 20px auto;
-  max-width: 550px;
 }
 
 .start-button,
 .play-again-button {
   border: none;
-  background: linear-gradient(135deg, #00b894, #00cec9);
+  background: #00b894;
   color: white;
   padding: 16px 35px;
   border-radius: 30px;
@@ -86,14 +85,6 @@ body {
   font-weight: bold;
   cursor: pointer;
   margin-top: 15px;
-  transition: transform 0.2s;
-}
-
-.start-button:hover,
-.play-again-button:hover,
-.learn-button:hover,
-.home-button:hover {
-  transform: scale(1.05);
 }
 
 .question-top {
@@ -101,23 +92,21 @@ body {
   justify-content: space-between;
   font-size: 18px;
   font-weight: bold;
-  margin-bottom: 10px;
 }
 
 .progress-bar {
   height: 14px;
-  width: 100%;
   background: #eee;
   border-radius: 20px;
   overflow: hidden;
-  margin-bottom: 25px;
+  margin: 15px 0 25px;
 }
 
 #gameProgress {
   height: 100%;
   width: 10%;
-  background: linear-gradient(90deg, #00b894, #55efc4);
-  transition: width 0.4s ease;
+  background: #00b894;
+  transition: width 0.3s;
 }
 
 .question-card {
@@ -127,28 +116,15 @@ body {
 }
 
 .game-animal {
-  min-height: 170px;
+  font-size: 130px;
+  min-height: 160px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  font-size: 135px;
-  animation: animalFloat 1.5s infinite;
-}
-
-@keyframes animalFloat {
-  0%, 100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-8px);
-  }
+  align-items: center;
 }
 
 .question-card h2 {
   font-size: 28px;
-  color: #2d3436;
-  margin: 10px 0 15px;
 }
 
 .listen-button {
@@ -174,21 +150,14 @@ body {
   background: white;
   border-radius: 20px;
   padding: 18px 10px;
-  font-size: 21px;
+  font-size: 20px;
   font-weight: bold;
   cursor: pointer;
-  transition: all 0.2s;
-}
-
-.option-button:hover {
-  transform: translateY(-3px);
-  border-color: #6c5ce7;
 }
 
 .option-button.correct {
   background: #55efc4;
   border-color: #00b894;
-  color: #14532d;
 }
 
 .option-button.wrong {
@@ -204,7 +173,7 @@ body {
 .feedback {
   min-height: 45px;
   margin-top: 20px;
-  font-size: 21px;
+  font-size: 20px;
   font-weight: bold;
 }
 
@@ -222,12 +191,12 @@ body {
 
 .final-score {
   font-size: 28px;
-  margin: 20px 0;
   color: #6c5ce7;
+  margin: 20px;
 }
 
 .earned-stars {
-  font-size: 23px;
+  font-size: 22px;
   margin-bottom: 25px;
 }
 
@@ -238,10 +207,8 @@ body {
   color: white;
   padding: 14px 24px;
   border-radius: 28px;
-  font-size: 17px;
   font-weight: bold;
   margin: 8px;
-  transition: transform 0.2s;
 }
 
 .learn-button {
@@ -259,7 +226,7 @@ body {
   }
 
   .game-title {
-    font-size: 19px;
+    font-size: 18px;
   }
 
   .back-button {
@@ -271,36 +238,15 @@ body {
     font-size: 16px;
   }
 
-  .game-screen {
-    padding: 25px 15px;
-  }
-
-  .game-screen h1 {
-    font-size: 29px;
-  }
-
-  .game-hero {
-    font-size: 65px;
-  }
-
   .game-animal {
     font-size: 105px;
-    min-height: 140px;
-  }
-
-  .question-card h2 {
-    font-size: 23px;
   }
 
   .options-container {
     grid-template-columns: 1fr;
   }
 
-  .option-button {
-    padding: 15px;
-  }
-
-  .question-top {
-    font-size: 15px;
+  .question-card h2 {
+    font-size: 23px;
   }
 }
