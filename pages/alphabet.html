@@ -1,1 +1,221 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Learn ABC - Little Learner</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/alphabet.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="abc-header">
+
+        <button
+            class="home-button"
+            onclick="goHome()"
+        >
+            🏠 Home
+        </button>
+
+
+        <div class="abc-title">
+            🔤 Learn ABC
+        </div>
+
+
+        <div class="star-display">
+            ⭐ <span id="starCount">0</span>
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="abc-container">
+
+
+        <!-- Progress -->
+
+        <section class="progress-area">
+
+            <div class="progress-text">
+
+                <span>ABC Progress</span>
+
+                <span id="progressText">
+                    1 / 26
+                </span>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div
+                    id="progressFill"
+                    class="progress-fill"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             LEARNING CARD
+        ========================== -->
+
+        <section class="learning-card">
+
+
+            <!-- Letter -->
+
+            <div
+                id="letter"
+                class="big-letter"
+            >
+                A
+            </div>
+
+
+            <!-- Picture -->
+
+            <div
+                id="picture"
+                class="big-picture"
+            >
+                🍎
+            </div>
+
+
+            <!-- Word -->
+
+            <h1 id="word">
+                Apple
+            </h1>
+
+
+            <!-- Sentence -->
+
+            <p id="sentence">
+                A is for Apple 🍎
+            </p>
+
+
+            <!-- Listen -->
+
+            <button
+                class="listen-button"
+                onclick="speakCurrentLetter()"
+            >
+                🔊 Listen
+            </button>
+
+
+            <!-- Completed -->
+
+            <div
+                id="completedMessage"
+                class="completed-message"
+            >
+                ⭐ Great Job!
+            </div>
+
+
+        </section>
+
+
+        <!-- =========================
+             NAVIGATION
+        ========================== -->
+
+        <section class="navigation">
+
+            <button
+                id="previousButton"
+                class="nav-button"
+                onclick="previousLetter()"
+            >
+                ← Previous
+            </button>
+
+
+            <div
+                id="letterNumber"
+                class="letter-number"
+            >
+                1
+            </div>
+
+
+            <button
+                id="nextButton"
+                class="nav-button"
+                onclick="nextLetter()"
+            >
+                Next →
+            </button>
+
+        </section>
+
+
+        <!-- =========================
+             LETTER CHOOSER
+        ========================== -->
+
+        <section class="alphabet-selector">
+
+            <h2>Choose a letter</h2>
+
+            <div
+                id="alphabetButtons"
+                class="alphabet-buttons"
+            ></div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        🌈 Little Learner •
+        Learn • Play • Grow 🌱
+
+    </footer>
+
+
+    <script src="../js/alphabet.js"></script>
+
+</body>
+
+</html>
+```
 
