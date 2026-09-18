@@ -1,1 +1,281 @@
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ABC Game - Little Learner</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/abc-game.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="game-header">
+
+        <button
+            class="home-button"
+            onclick="goHome()"
+        >
+            🏠 Home
+        </button>
+
+
+        <div class="game-title">
+            🎮 ABC Game
+        </div>
+
+
+        <div class="stars">
+            ⭐ <span id="starCount">0</span>
+        </div>
+
+    </header>
+
+
+    <!-- MAIN -->
+
+    <main class="game-container">
+
+
+        <!-- GAME INTRO -->
+
+        <section
+            id="startScreen"
+            class="start-screen"
+        >
+
+            <div class="game-character">
+                🧒
+            </div>
+
+
+            <h1>
+                🎮 ABC Challenge!
+            </h1>
+
+
+            <p>
+                Let's see how many letters you know!
+            </p>
+
+
+            <div class="game-info">
+
+                <div>
+                    🔤
+                    <strong>10</strong>
+                    Questions
+                </div>
+
+                <div>
+                    ⭐
+                    Earn Stars
+                </div>
+
+                <div>
+                    🎉
+                    Have Fun
+                </div>
+
+            </div>
+
+
+            <button
+                class="start-game-button"
+                onclick="startGame()"
+            >
+                🚀 Start Game
+            </button>
+
+        </section>
+
+
+        <!-- GAME SCREEN -->
+
+        <section
+            id="gameScreen"
+            class="game-screen hidden"
+        >
+
+
+            <!-- QUESTION PROGRESS -->
+
+            <div class="question-progress">
+
+                <div class="progress-label">
+
+                    <span>
+                        Question
+                    </span>
+
+                    <span id="questionNumber">
+                        1 / 10
+                    </span>
+
+                </div>
+
+
+                <div class="question-bar">
+
+                    <div
+                        id="questionFill"
+                        class="question-fill"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUESTION CARD -->
+
+            <div class="question-card">
+
+
+                <div
+                    id="questionPicture"
+                    class="question-picture"
+                >
+                    🍎
+                </div>
+
+
+                <h2>
+                    Which letter starts
+                    this word?
+                </h2>
+
+
+                <div
+                    id="questionWord"
+                    class="question-word"
+                >
+                    Apple
+                </div>
+
+
+                <button
+                    class="listen-button"
+                    onclick="listenQuestion()"
+                >
+                    🔊 Listen
+                </button>
+
+
+                <!-- OPTIONS -->
+
+                <div
+                    id="options"
+                    class="options"
+                ></div>
+
+
+                <!-- FEEDBACK -->
+
+                <div
+                    id="feedback"
+                    class="feedback"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- RESULT SCREEN -->
+
+        <section
+            id="resultScreen"
+            class="result-screen hidden"
+        >
+
+            <div class="result-character">
+                🏆
+            </div>
+
+
+            <h1>
+                🎉 Amazing!
+            </h1>
+
+
+            <p>
+                You finished the ABC Challenge!
+            </p>
+
+
+            <div class="score-box">
+
+                <div>
+                    ⭐
+                </div>
+
+                <strong id="finalScore">
+                    0 / 10
+                </strong>
+
+                <span>
+                    Correct Answers
+                </span>
+
+            </div>
+
+
+            <div
+                id="resultMessage"
+                class="result-message"
+            >
+                Great job, Little Learner!
+            </div>
+
+
+            <button
+                class="play-again-button"
+                onclick="startGame()"
+            >
+                🔄 Play Again
+            </button>
+
+
+            <button
+                class="back-button"
+                onclick="goHome()"
+            >
+                🏠 Back Home
+            </button>
+
+        </section>
+
+
+    </main>
+
+
+    <footer>
+
+        🌈 Little Learner •
+        Learn • Play • Grow 🌱
+
+    </footer>
+
+
+    <script src="../js/abc-game.js"></script>
+
+</body>
+
+</html>
+
