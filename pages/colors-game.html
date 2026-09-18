@@ -1,1 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Colors Game - Little Learner</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/colors-game.css"
+    >
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="top-header">
+
+        <button
+            class="home-button"
+            onclick="goHome()"
+        >
+            🏠 Home
+        </button>
+
+        <h1>🎨 Colors Game</h1>
+
+        <div class="stars">
+            ⭐ <span id="starCount">0</span>
+        </div>
+
+    </header>
+
+
+    <main class="game-container">
+
+        <!-- Start Screen -->
+        <section
+            id="startScreen"
+            class="screen"
+        >
+
+            <div class="start-icon">
+                🌈
+            </div>
+
+            <h2>🎨 Color Challenge!</h2>
+
+            <p>
+                Let's see how many colors you know!
+            </p>
+
+            <div class="game-info">
+
+                <div>
+                    🎨
+                    <strong>10</strong>
+                    <span>Questions</span>
+                </div>
+
+                <div>
+                    ⭐
+                    <strong>Stars</strong>
+                    <span>Rewards</span>
+                </div>
+
+                <div>
+                    🎉
+                    <strong>Fun</strong>
+                    <span>Learning</span>
+                </div>
+
+            </div>
+
+            <button
+                class="start-button"
+                onclick="startGame()"
+            >
+                🚀 Start Game
+            </button>
+
+        </section>
+
+
+        <!-- Game Screen -->
+        <section
+            id="gameScreen"
+            class="screen hidden"
+        >
+
+            <!-- Progress -->
+            <div class="question-progress">
+
+                <div class="progress-info">
+
+                    <span id="questionNumber">
+                        Question 1 of 10
+                    </span>
+
+                    <span id="scoreText">
+                        Score: 0
+                    </span>
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div
+                        id="questionFill"
+                        class="progress-fill"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Question -->
+            <div class="question-card">
+
+                <div
+                    id="questionText"
+                    class="question-text"
+                >
+                    Which color is this?
+                </div>
+
+
+                <div
+                    id="questionVisual"
+                    class="question-visual"
+                ></div>
+
+
+                <button
+                    class="listen-button"
+                    onclick="listenQuestion()"
+                >
+                    🔊 Listen
+                </button>
+
+            </div>
+
+
+            <!-- Options -->
+            <div
+                id="options"
+                class="options"
+            ></div>
+
+
+            <!-- Feedback -->
+            <div
+                id="feedback"
+                class="feedback"
+            ></div>
+
+        </section>
+
+
+        <!-- Result Screen -->
+        <section
+            id="resultScreen"
+            class="screen hidden"
+        >
+
+            <div class="trophy">
+                🏆
+            </div>
+
+            <h2>Game Complete!</h2>
+
+            <div
+                id="finalScore"
+                class="final-score"
+            >
+                0 / 10
+            </div>
+
+            <p id="resultMessage">
+                Great job!
+            </p>
+
+            <div class="result-buttons">
+
+                <button
+                    class="play-again"
+                    onclick="startGame()"
+                >
+                    🔄 Play Again
+                </button>
+
+                <button
+                    class="home-result"
+                    onclick="goHome()"
+                >
+                    🏠 Back Home
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        🌟 Keep Learning, Little Star! 🌟
+    </footer>
+
+
+    <script src="../js/colors-game.js"></script>
+
+</body>
+
+</html>
