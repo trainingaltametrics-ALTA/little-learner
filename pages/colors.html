@@ -1,1 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
 
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Learn Colors - Little Learner</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/colors.css"
+    >
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="top-header">
+
+        <button
+            class="home-button"
+            onclick="goHome()"
+        >
+            🏠 Home
+        </button>
+
+        <h1>🌈 Learn Colors</h1>
+
+        <div class="stars">
+            ⭐ <span id="starCount">0</span>
+        </div>
+
+    </header>
+
+
+    <main class="colors-container">
+
+        <!-- Progress -->
+        <section class="progress-section">
+
+            <div class="progress-title">
+                <span>Color Progress</span>
+
+                <span id="progressText">
+                    1 / 10
+                </span>
+            </div>
+
+            <div class="progress-bar">
+                <div
+                    id="progressFill"
+                    class="progress-fill"
+                ></div>
+            </div>
+
+        </section>
+
+
+        <!-- Learning Card -->
+        <section class="color-card">
+
+            <div
+                id="colorCircle"
+                class="color-circle"
+            ></div>
+
+            <div
+                id="colorName"
+                class="color-name"
+            >
+                Red
+            </div>
+
+            <div
+                id="colorObjects"
+                class="color-objects"
+            >
+                🍎 🚗 🎈
+            </div>
+
+            <h2 id="colorWord">
+                RED
+            </h2>
+
+            <p id="colorSentence">
+                An apple can be red.
+            </p>
+
+            <button
+                class="listen-button"
+                onclick="speakCurrentColor()"
+            >
+                🔊 Listen
+            </button>
+
+            <div
+                id="completedMessage"
+                class="completed-message"
+            >
+                ⭐ Color Completed!
+            </div>
+
+        </section>
+
+
+        <!-- Navigation -->
+        <div class="navigation">
+
+            <button
+                id="previousButton"
+                onclick="previousColor()"
+            >
+                ⬅️ Previous
+            </button>
+
+            <button
+                id="nextButton"
+                onclick="nextColor()"
+            >
+                Next ➡️
+            </button>
+
+        </div>
+
+
+        <!-- Color Selector -->
+        <section class="color-selector-section">
+
+            <h3>🎨 Choose a Color</h3>
+
+            <div
+                id="colorButtons"
+                class="color-buttons"
+            ></div>
+
+        </section>
+
+
+        <!-- Game -->
+        <a
+            href="colors-game.html"
+            class="game-button"
+        >
+            🎮 Play Colors Game
+        </a>
+
+    </main>
+
+
+    <footer>
+        🌟 Keep Learning, Little Star! 🌟
+    </footer>
+
+
+    <script src="../js/colors.js"></script>
+
+</body>
+</html>
