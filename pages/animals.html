@@ -1,1 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animals - Little Learner</title>
 
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../css/animals.css">
+</head>
+
+<body>
+
+  <header class="animals-header">
+    <a href="../index.html" class="back-button">🏠 Home</a>
+
+    <div class="page-title">
+      🐾 Animal World
+    </div>
+
+    <div class="stars">
+      ⭐ <span id="starCount">0</span>
+    </div>
+  </header>
+
+  <main class="animals-container">
+
+    <div class="welcome-card">
+      <h1>🐶 Let's Learn Animals!</h1>
+      <p>Look, listen and learn about amazing animals! 🌈</p>
+    </div>
+
+    <div class="progress-section">
+      <div class="progress-text">
+        Animal <span id="currentNumber">1</span> of 10
+      </div>
+
+      <div class="progress-bar">
+        <div id="progressFill"></div>
+      </div>
+    </div>
+
+    <section class="animal-card">
+
+      <div class="animal-picture" id="animalPicture">
+        🐶
+      </div>
+
+      <h2 id="animalName">DOG</h2>
+
+      <div class="animal-sound" id="animalSound">
+        Woof! 🐶
+      </div>
+
+      <p class="animal-sentence" id="animalSentence">
+        A dog is a friendly animal.
+      </p>
+
+      <button class="listen-button" onclick="listenAnimal()">
+        🔊 Listen
+      </button>
+
+      <button class="sound-button" onclick="playAnimalSound()">
+        🐾 Animal Sound
+      </button>
+
+    </section>
+
+    <div class="navigation">
+
+      <button id="previousButton" onclick="previousAnimal()">
+        ⬅️ Previous
+      </button>
+
+      <button id="nextButton" onclick="nextAnimal()">
+        Next ➡️
+      </button>
+
+    </div>
+
+    <div class="animal-selector" id="animalSelector"></div>
+
+    <div id="completionMessage" class="completion-message">
+      🎉 Amazing! You learned all the animals!
+      <br>
+      ⭐ You earned 5 stars!
+    </div>
+
+    <a href="animals-game.html" class="game-button">
+      🎮 Play Animal Game
+    </a>
+
+  </main>
+
+  <script src="../js/animals.js"></script>
+
+</body>
+</html>
