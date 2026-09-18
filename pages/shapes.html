@@ -1,1 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Shapes - Little Learner</title>
+
+    <link rel="stylesheet" href="../css/shapes.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="shapes-header">
+
+        <a href="../index.html" class="back-button">
+            🏠 Home
+        </a>
+
+        <div class="header-title">
+            🔷 Shapes
+        </div>
+
+        <div class="star-counter">
+            ⭐ <span id="starCount">0</span>
+        </div>
+
+    </header>
+
+
+    <!-- Main Content -->
+    <main class="shapes-container">
+
+        <!-- Welcome -->
+        <section class="welcome-section">
+
+            <h1>🔷 Let's Learn Shapes!</h1>
+
+            <p>
+                Learn different shapes, listen to their names,
+                and have fun! 🎉
+            </p>
+
+        </section>
+
+
+        <!-- Progress -->
+        <section class="progress-section">
+
+            <div class="progress-info">
+
+                <span>
+                    Shape <span id="currentNumber">1</span>
+                    of <span id="totalNumber">8</span>
+                </span>
+
+                <span id="progressPercent">13%</span>
+
+            </div>
+
+            <div class="progress-bar">
+
+                <div
+                    id="progressFill"
+                    class="progress-fill">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Shape Card -->
+        <section class="shape-card">
+
+            <!-- Shape Visual -->
+            <div
+                id="shapeVisual"
+                class="shape-visual">
+            </div>
+
+
+            <!-- Shape Name -->
+            <h2 id="shapeName">
+                Circle
+            </h2>
+
+            <p
+                id="shapeWord"
+                class="shape-word">
+                CIRCLE
+            </p>
+
+
+            <!-- Objects -->
+            <div
+                id="shapeObjects"
+                class="shape-objects">
+            </div>
+
+
+            <!-- Sentence -->
+            <p
+                id="shapeSentence"
+                class="shape-sentence">
+            </p>
+
+
+            <!-- Listen -->
+            <button
+                id="listenButton"
+                class="listen-button"
+                onclick="speakCurrentShape()">
+
+                🔊 Listen
+
+            </button>
+
+        </section>
+
+
+        <!-- Navigation -->
+        <div class="navigation">
+
+            <button
+                id="previousButton"
+                class="nav-button previous-button"
+                onclick="previousShape()">
+
+                ⬅️ Previous
+
+            </button>
+
+            <button
+                id="nextButton"
+                class="nav-button next-button"
+                onclick="nextShape()">
+
+                Next ➡️
+
+            </button>
+
+        </div>
+
+
+        <!-- Shape Selector -->
+        <section class="shape-selector-section">
+
+            <h3>Choose a Shape 👇</h3>
+
+            <div
+                id="shapeSelector"
+                class="shape-selector">
+            </div>
+
+        </section>
+
+
+        <!-- Game Button -->
+        <a
+            href="shapes-game.html"
+            class="game-button">
+
+            🎮 Play Shapes Game
+
+        </a>
+
+    </main>
+
+
+    <script src="../js/shapes.js"></script>
+
+</body>
+</html>
