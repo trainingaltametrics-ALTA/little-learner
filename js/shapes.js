@@ -2,9 +2,7 @@
 // LITTLE LEARNER - SHAPES
 // ========================================
 
-
 const shapesData = [
-
     {
         name: "Circle",
         word: "CIRCLE",
@@ -12,7 +10,6 @@ const shapesData = [
         objects: ["⚽", "🍊", "🪙"],
         sentence: "A ball is round like a circle."
     },
-
     {
         name: "Square",
         word: "SQUARE",
@@ -20,7 +17,6 @@ const shapesData = [
         objects: ["🪟", "🎁", "🧇"],
         sentence: "A window can be a square."
     },
-
     {
         name: "Triangle",
         word: "TRIANGLE",
@@ -28,7 +24,6 @@ const shapesData = [
         objects: ["🍕", "⛺", "🔺"],
         sentence: "A triangle has three sides."
     },
-
     {
         name: "Rectangle",
         word: "RECTANGLE",
@@ -36,7 +31,6 @@ const shapesData = [
         objects: ["🚪", "📺", "📱"],
         sentence: "A door can be a rectangle."
     },
-
     {
         name: "Star",
         word: "STAR",
@@ -45,7 +39,6 @@ const shapesData = [
         objects: ["🌟", "✨", "🌌"],
         sentence: "A star shines in the sky."
     },
-
     {
         name: "Diamond",
         word: "DIAMOND",
@@ -53,7 +46,6 @@ const shapesData = [
         objects: ["💎", "♦️", "🔷"],
         sentence: "A diamond has four sides."
     },
-
     {
         name: "Heart",
         word: "HEART",
@@ -62,7 +54,6 @@ const shapesData = [
         objects: ["💕", "💖", "💗"],
         sentence: "A heart shows love."
     },
-
     {
         name: "Oval",
         word: "OVAL",
@@ -70,37 +61,29 @@ const shapesData = [
         objects: ["🥚", "🏉", "🪞"],
         sentence: "An egg is oval-shaped."
     }
-
 ];
-
 
 let currentShape = 0;
 
 const TOTAL_SHAPES = shapesData.length;
 
-const COMPLETION_KEY =
-    "littleLearnerShapesCompleted";
-
-const STAR_KEY =
-    "littleLearnerStars";
+const COMPLETION_KEY = "littleLearnerShapesCompleted";
+const STAR_KEY = "littleLearnerStars";
 
 
 // ========================================
-// INITIALIZE
+// START
 // ========================================
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
+document.addEventListener("DOMContentLoaded", function () {
 
-        createShapeSelector();
+    createShapeSelector();
 
-        loadShape();
+    loadShape();
 
-        updateStars();
+    updateStars();
 
-    }
-);
+});
 
 
 // ========================================
@@ -109,72 +92,48 @@ document.addEventListener(
 
 function loadShape() {
 
-    const shape =
-        shapesData[currentShape];
+    const shape = shapesData[currentShape];
 
+    const visual = document.getElementById("shapeVisual");
 
-    // Shape visual
-    const visual =
-        document.getElementById("shapeVisual");
-
+    // Reset visual
     visual.className = "shape-visual";
+    visual.textContent = "";
 
-
+    // Show emoji shapes
     if (shape.emoji) {
 
-        visual.textContent =
-            shape.emoji;
-
-        visual.classList.add(
-            shape.className
-        );
-
-    } else {
-
-        visual.textContent = "";
-
-        visual.classList.add(
-            shape.className
-        );
+        visual.textContent = shape.emoji;
 
     }
 
-
-    // Name
-    document.getElementById(
-        "shapeName"
-    ).textContent = shape.name;
+    visual.classList.add(shape.className);
 
 
-    // Word
-    document.getElementById(
-        "shapeWord"
-    ).textContent = shape.word;
+    // Shape name
+    document.getElementById("shapeName").textContent =
+        shape.name;
+
+
+    // Shape word
+    document.getElementById("shapeWord").textContent =
+        shape.word;
 
 
     // Objects
-    document.getElementById(
-        "shapeObjects"
-    ).textContent =
+    document.getElementById("shapeObjects").textContent =
         shape.objects.join(" ");
 
 
     // Sentence
-    document.getElementById(
-        "shapeSentence"
-    ).textContent =
+    document.getElementById("shapeSentence").textContent =
         shape.sentence;
 
 
-    // Progress
     updateProgress();
 
-
-    // Navigation
     updateNavigation();
 
-
-    // Selector
     updateSelector();
 
 }
@@ -186,59 +145,33 @@ function loadShape() {
 
 function updateProgress() {
 
-    const current =
-        currentShape + 1;
+    const current = currentShape + 1;
 
     const percentage =
-        Math.round(
-            (current / TOTAL_SHAPES) * 100
-        );
+        Math.round((current / TOTAL_SHAPES) * 100);
 
 
-    document.getElementById(
-        "currentNumber"
-    ).textContent = current;
+    document.getElementById("currentNumber").textContent =
+        current;
 
 
-    document.getElementById(
-        "totalNumber"
-    ).textContent =
+    document.getElementById("totalNumber").textContent =
         TOTAL_SHAPES;
 
 
-    document.getElementById(
-        "progressPercent"
-    ).textContent =
+    document.getElementById("progressPercent").textContent =
         percentage + "%";
 
 
-    document.getElementById(
-        "progressFill"
-    ).style.width =
+    document.getElementById("progressFill").style.width =
         percentage + "%";
 
 }
 
 
 // ========================================
-// NAVIGATION
+// PREVIOUS
 // ========================================
-
-function updateNavigation() {
-
-    document.getElementById(
-        "previousButton"
-    ).disabled =
-        currentShape === 0;
-
-
-    document.getElementById(
-        "nextButton"
-    ).disabled =
-        currentShape === TOTAL_SHAPES - 1;
-
-}
-
 
 function previousShape() {
 
@@ -253,6 +186,10 @@ function previousShape() {
 }
 
 
+// ========================================
+// NEXT
+// ========================================
+
 function nextShape() {
 
     if (currentShape < TOTAL_SHAPES - 1) {
@@ -260,6 +197,13 @@ function nextShape() {
         currentShape++;
 
         loadShape();
+
+        // Completing the last shape
+        if (currentShape === TOTAL_SHAPES - 1) {
+
+            checkCompletion();
+
+        }
 
     }
 
@@ -273,68 +217,60 @@ function nextShape() {
 function createShapeSelector() {
 
     const selector =
-        document.getElementById(
-            "shapeSelector"
-        );
+        document.getElementById("shapeSelector");
 
     selector.innerHTML = "";
 
 
-    shapesData.forEach(
-        function (shape, index) {
+    const symbols = {
+        Circle: "⭕",
+        Square: "⬜",
+        Triangle: "🔺",
+        Rectangle: "▭",
+        Star: "⭐",
+        Diamond: "💎",
+        Heart: "❤️",
+        Oval: "🥚"
+    };
 
-            const button =
-                document.createElement(
-                    "button"
-                );
+
+    shapesData.forEach(function (shape, index) {
+
+        const button =
+            document.createElement("button");
 
 
-            if (shape.emoji) {
+        button.textContent =
+            symbols[shape.name] || "🔷";
 
-                button.textContent =
-                    shape.emoji;
 
-            } else {
+        button.title =
+            shape.name;
 
-                // Small visual representation
-                const symbolMap = {
-                    Circle: "⭕",
-                    Square: "⬜",
-                    Triangle: "🔺",
-                    Rectangle: "▭",
-                    Diamond: "💎",
-                    Oval: "🥚"
-                };
 
-                button.textContent =
-                    symbolMap[shape.name] || "🔷";
+        button.addEventListener("click", function () {
 
+            currentShape = index;
+
+            loadShape();
+
+            if (currentShape === TOTAL_SHAPES - 1) {
+                checkCompletion();
             }
 
-
-            button.title =
-                shape.name;
+        });
 
 
-            button.addEventListener(
-                "click",
-                function () {
+        selector.appendChild(button);
 
-                    currentShape = index;
-
-                    loadShape();
-
-                }
-            );
-
-
-            selector.appendChild(button);
-
-        }
-    );
+    });
 
 }
 
+
+// ========================================
+// UPDATE SELECTOR
+// ========================================
 
 function updateSelector() {
 
@@ -344,16 +280,14 @@ function updateSelector() {
         );
 
 
-    buttons.forEach(
-        function (button, index) {
+    buttons.forEach(function (button, index) {
 
-            button.classList.toggle(
-                "active",
-                index === currentShape
-            );
+        button.classList.toggle(
+            "active",
+            index === currentShape
+        );
 
-        }
-    );
+    });
 
 }
 
@@ -364,9 +298,7 @@ function updateSelector() {
 
 function speakCurrentShape() {
 
-    if (
-        !("speechSynthesis" in window)
-    ) {
+    if (!("speechSynthesis" in window)) {
 
         alert(
             "Sorry! Your browser does not support speech."
@@ -392,9 +324,7 @@ function speakCurrentShape() {
 
 
     const speech =
-        new SpeechSynthesisUtterance(
-            text
-        );
+        new SpeechSynthesisUtterance(text);
 
 
     speech.lang = "en-US";
@@ -404,9 +334,7 @@ function speakCurrentShape() {
     speech.pitch = 1.15;
 
 
-    speechSynthesis.speak(
-        speech
-    );
+    speechSynthesis.speak(speech);
 
 }
 
@@ -419,15 +347,12 @@ function updateStars() {
 
     const stars =
         Number(
-            localStorage.getItem(
-                STAR_KEY
-            ) || 0
+            localStorage.getItem(STAR_KEY) || 0
         );
 
 
-    document.getElementById(
-        "starCount"
-    ).textContent = stars;
+    document.getElementById("starCount").textContent =
+        stars;
 
 }
 
@@ -438,13 +363,11 @@ function updateStars() {
 
 function checkCompletion() {
 
-    const completed =
-        localStorage.getItem(
-            COMPLETION_KEY
-        );
+    const alreadyCompleted =
+        localStorage.getItem(COMPLETION_KEY);
 
 
-    if (completed === "true") {
+    if (alreadyCompleted === "true") {
 
         return;
 
@@ -459,9 +382,7 @@ function checkCompletion() {
 
     let stars =
         Number(
-            localStorage.getItem(
-                STAR_KEY
-            ) || 0
+            localStorage.getItem(STAR_KEY) || 0
         );
 
 
@@ -477,60 +398,12 @@ function checkCompletion() {
     updateStars();
 
 
-    setTimeout(
-        function () {
+    setTimeout(function () {
 
-            alert(
-                "🎉 Amazing! You learned all the shapes!\n\n⭐ +5 Stars!"
-            );
+        alert(
+            "🎉 Amazing! You learned all the shapes!\n\n⭐ +5 Stars!"
+        );
 
-        },
-        200
-    );
+    }, 300);
 
 }
-
-
-// ========================================
-// TRACK LAST SHAPE
-// ========================================
-
-let previousShapeIndex =
-    currentShape;
-
-
-const originalLoadShape =
-    loadShape;
-
-
-// Check completion when reaching final shape
-function handleShapeProgress() {
-
-    if (
-        currentShape ===
-        TOTAL_SHAPES - 1
-    ) {
-
-        checkCompletion();
-
-    }
-
-}
-
-
-// Re-check whenever page interaction occurs
-document.addEventListener(
-    "click",
-    function () {
-
-        if (
-            currentShape ===
-            TOTAL_SHAPES - 1
-        ) {
-
-            handleShapeProgress();
-
-        }
-
-    }
-);
