@@ -1,54 +1,14 @@
 const animals = [
-  {
-    name: "Dog",
-    emoji: "🐶",
-    sound: "Woof!"
-  },
-  {
-    name: "Cat",
-    emoji: "🐱",
-    sound: "Meow!"
-  },
-  {
-    name: "Lion",
-    emoji: "🦁",
-    sound: "Roar!"
-  },
-  {
-    name: "Elephant",
-    emoji: "🐘",
-    sound: "Trumpet!"
-  },
-  {
-    name: "Tiger",
-    emoji: "🐯",
-    sound: "Roar!"
-  },
-  {
-    name: "Monkey",
-    emoji: "🐒",
-    sound: "Ooh-ooh!"
-  },
-  {
-    name: "Rabbit",
-    emoji: "🐰",
-    sound: "Squeak!"
-  },
-  {
-    name: "Panda",
-    emoji: "🐼",
-    sound: "Grunt!"
-  },
-  {
-    name: "Bear",
-    emoji: "🐻",
-    sound: "Growl!"
-  },
-  {
-    name: "Giraffe",
-    emoji: "🦒",
-    sound: "Hum!"
-  }
+  { name: "Dog", emoji: "🐶", sound: "Woof!" },
+  { name: "Cat", emoji: "🐱", sound: "Meow!" },
+  { name: "Lion", emoji: "🦁", sound: "Roar!" },
+  { name: "Elephant", emoji: "🐘", sound: "Trumpet!" },
+  { name: "Tiger", emoji: "🐯", sound: "Roar!" },
+  { name: "Monkey", emoji: "🐒", sound: "Ooh-ooh!" },
+  { name: "Rabbit", emoji: "🐰", sound: "Squeak!" },
+  { name: "Panda", emoji: "🐼", sound: "Grunt!" },
+  { name: "Bear", emoji: "🐻", sound: "Growl!" },
+  { name: "Giraffe", emoji: "🦒", sound: "Hum!" }
 ];
 
 let questions = [];
@@ -56,35 +16,31 @@ let currentQuestion = 0;
 let score = 0;
 let answered = false;
 
-function shuffle(array) {
-
-  const copy = [...array];
-
-  for (let i = copy.length - 1; i > 0; i--) {
-
-    const j = Math.floor(Math.random() * (i + 1));
-
-    [copy[i], copy[j]] = [copy[j], copy[i]];
-  }
-
-  return copy;
-}
-
 function startGame() {
 
-  questions = shuffle(animals).slice(0, 10);
+  questions = [];
+
+  let shuffled = [...animals];
+
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+
+  questions = shuffled;
 
   currentQuestion = 0;
   score = 0;
   answered = false;
 
   document.getElementById("startScreen").style.display = "none";
-  document.getElementById("resultScreen").style.display = "none";
   document.getElementById("gameScreen").style.display = "block";
+  document.getElementById("resultScreen").style.display = "none";
 
   document.getElementById("score").textContent = "0";
 
   loadStars();
+
   showQuestion();
 }
 
@@ -92,7 +48,7 @@ function showQuestion() {
 
   answered = false;
 
-  const animal = questions[currentQuestion];
+  let animal = questions[currentQuestion];
 
   document.getElementById("questionNumber").textContent =
     currentQuestion + 1;
@@ -111,7 +67,7 @@ function showQuestion() {
   document.getElementById("feedback").className =
     "feedback";
 
-  const progress =
+  let progress =
     ((currentQuestion + 1) / questions.length) * 100;
 
   document.getElementById("gameProgress").style.width =
@@ -122,24 +78,33 @@ function showQuestion() {
 
 function createOptions(correctAnimal) {
 
-  const wrongAnimals = animals.filter(
-    animal => animal.name !== correctAnimal.name
-  );
+  let wrongAnimals =
+    animals.filter(function(animal) {
+      return animal.name !== correctAnimal.name;
+    });
 
-  const randomWrong =
-    shuffle(wrongAnimals).slice(0, 2);
+  wrongAnimals.sort(function() {
+    return Math.random() - 0.5;
+  });
 
-  const options =
-    shuffle([correctAnimal, ...randomWrong]);
+  let options = [
+    correctAnimal,
+    wrongAnimals[0],
+    wrongAnimals[1]
+  ];
 
-  const container =
+  options.sort(function() {
+    return Math.random() - 0.5;
+  });
+
+  let container =
     document.getElementById("options");
 
   container.innerHTML = "";
 
-  options.forEach(animal => {
+  options.forEach(function(animal) {
 
-    const button =
+    let button =
       document.createElement("button");
 
     button.className = "option-button";
@@ -147,8 +112,12 @@ function createOptions(correctAnimal) {
     button.textContent =
       animal.emoji + " " + animal.name;
 
-    button.onclick = function () {
-      checkAnswer(animal.name, correctAnimal.name, button);
+    button.onclick = function() {
+      checkAnswer(
+        animal.name,
+        correctAnimal.name,
+        button
+      );
     };
 
     container.appendChild(button);
@@ -163,27 +132,23 @@ function checkAnswer(selected, correct, selectedButton) {
 
   answered = true;
 
-  const buttons =
+  let buttons =
     document.querySelectorAll(".option-button");
 
-  buttons.forEach(button => {
+  buttons.forEach(function(button) {
     button.disabled = true;
-
-    if (button.textContent.includes(correct)) {
-      button.classList.add("correct");
-    }
   });
 
-  const feedback =
+  let feedback =
     document.getElementById("feedback");
 
   if (selected === correct) {
 
     score++;
 
-    addStar();
-
     selectedButton.classList.add("correct");
+
+    addStar();
 
     feedback.textContent =
       "🎉 Correct! Great job! ⭐";
@@ -195,6 +160,14 @@ function checkAnswer(selected, correct, selectedButton) {
 
     selectedButton.classList.add("wrong");
 
+    buttons.forEach(function(button) {
+
+      if (button.textContent.includes(correct)) {
+        button.classList.add("correct");
+      }
+
+    });
+
     feedback.textContent =
       "😊 Nice try! The answer is " + correct + ".";
 
@@ -205,7 +178,7 @@ function checkAnswer(selected, correct, selectedButton) {
   document.getElementById("score").textContent =
     score;
 
-  setTimeout(() => {
+  setTimeout(function() {
 
     currentQuestion++;
 
@@ -220,7 +193,11 @@ function checkAnswer(selected, correct, selectedButton) {
 
 function listenQuestion() {
 
-  const animal =
+  if (questions.length === 0) {
+    return;
+  }
+
+  let animal =
     questions[currentQuestion];
 
   speak(
@@ -233,13 +210,12 @@ function listenQuestion() {
 function speak(text) {
 
   if (!("speechSynthesis" in window)) {
-    alert("Sorry! Your browser does not support voice.");
     return;
   }
 
   speechSynthesis.cancel();
 
-  const speech =
+  let speech =
     new SpeechSynthesisUtterance(text);
 
   speech.lang = "en-US";
@@ -267,7 +243,7 @@ function addStar() {
 
 function loadStars() {
 
-  const stars =
+  let stars =
     Number(localStorage.getItem("littleLearnerStars")) || 0;
 
   document.getElementById("starCount").textContent =
@@ -288,7 +264,7 @@ function showResult() {
   document.getElementById("earnedStars").textContent =
     score;
 
-  let message = "";
+  let message;
 
   if (score === 10) {
 
@@ -316,3 +292,5 @@ function showResult() {
 
   loadStars();
 }
+
+loadStars();
