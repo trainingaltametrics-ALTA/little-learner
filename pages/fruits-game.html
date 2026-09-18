@@ -1,1 +1,139 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Little Learner - Fruits Game</title>
+
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../css/fruits-game.css">
+</head>
+
+<body>
+
+  <div class="game-container">
+
+    <!-- START SCREEN -->
+    <section id="startScreen" class="screen">
+
+      <div class="game-icon">🍎🍌🍊</div>
+
+      <h1>🍓 Fruits Game 🍍</h1>
+
+      <p class="subtitle">
+        Let's see how well you know your fruits!
+      </p>
+
+      <div class="game-info">
+        <div>🍎 10 Questions</div>
+        <div>⭐ Earn Stars</div>
+        <div>🎧 Listen & Learn</div>
+      </div>
+
+      <button id="startButton" class="primary-button">
+        ▶️ Start Game
+      </button>
+
+      <a href="fruits.html" class="back-link">
+        📚 Learn Fruits
+      </a>
+
+      <a href="../index.html" class="back-link">
+        🏠 Back Home
+      </a>
+
+    </section>
+
+
+    <!-- GAME SCREEN -->
+    <section id="gameScreen" class="screen hidden">
+
+      <div class="game-header">
+
+        <button id="listenButton" class="listen-button">
+          🔊 Listen
+        </button>
+
+        <div class="score-box">
+          ⭐ <span id="starCount">0</span>
+        </div>
+
+      </div>
+
+      <div class="progress-area">
+
+        <div class="question-number">
+          Question <span id="questionNumber">1</span> of 10
+        </div>
+
+        <div class="progress-bar">
+          <div id="progressFill"></div>
+        </div>
+
+      </div>
+
+      <div class="question-card">
+
+        <div id="fruitVisual" class="fruit-visual">
+          🍎
+        </div>
+
+        <h2 id="questionText">
+          Which fruit is this?
+        </h2>
+
+        <div id="optionsContainer" class="options-container">
+        </div>
+
+        <div id="feedback" class="feedback"></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- RESULT SCREEN -->
+    <section id="resultScreen" class="screen hidden">
+
+      <div class="result-icon">🏆</div>
+
+      <h1>Great Job! 🎉</h1>
+
+      <p id="resultMessage">
+        You did a wonderful job!
+      </p>
+
+      <div class="final-score">
+        <div>Correct Answers</div>
+        <strong>
+          <span id="finalScore">0</span> / 10
+        </strong>
+      </div>
+
+      <div class="earned-stars">
+        ⭐ You earned <strong><span id="earnedStars">0</span></strong> stars!
+      </div>
+
+      <button id="playAgainButton" class="primary-button">
+        🔄 Play Again
+      </button>
+
+      <a href="fruits.html" class="back-link">
+        📚 Learn Fruits
+      </a>
+
+      <a href="../index.html" class="back-link">
+        🏠 Back Home
+      </a>
+
+    </section>
+
+  </div>
+
+  <script src="../js/fruits-game.js"></script>
+
+</body>
+</html>
+
+
